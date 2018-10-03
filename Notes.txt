@@ -1,0 +1,17 @@
+as an user i want to be able to sign up or log in 
+as an user i want to be able to log off or delete my account
+as an user i want to be able to change my information
+
+as an user i want to be able to see all articles
+as an user i want to be able to see an article individually, by clicking on it or searching for it
+as an user i want to be able to see all topics
+as an user i want to be able to see the articles for a specific topic
+as an user i want to be able to see the comments for an article when i click on them
+
+as an user i want to be able to post a new article
+as an user i want to be able to post a new comments
+as an user i want to be able to up or downvote
+as an user i want to be able to like the comments
+as an user i want to be able to delete my comments
+
+as an user i want to be able to view my and other people profiles

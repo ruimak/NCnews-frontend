@@ -1,0 +1,45 @@
+.App {
+  height: 100%;
+}
+
+.title {
+  text-align: center;
+}
+
+#mainDiv {
+  height: 100%;
+  background-color: rgba(221, 221, 221, 0.767);
+}
+#displayDiv {
+  height: 100%;
+  width: 80%;
+  background-color: white;
+  margin: auto;
+  box-shadow: 5px 5px 5px grey;
+}
+
+.displayInfoArea {
+  padding: 10%;
+  padding-top: 5%;
+  height: 100%;
+}
+
+/* Top bar with logo and buttons */
+
+#topBar {
+  border-bottom: double;
+  padding: 2%;
+  display: grid;
+  grid-template-columns: 7fr 1fr 1fr 1fr;
+  box-shadow: 5px 5px 5px black;
+}
+
+#logo {
+  width: 250px;
+  height: auto;
+}
+
+.topButton {
+  width: 50px;
+  height: auto;
+}
