@@ -12,7 +12,7 @@ class Article extends Component {
         }`
       )
       .then(article => {
-        this.setState({ article: article.data.articleWithCommentCount });
+        this.setState({ article: article.data.article });
       })
       .catch(console.log);
   }
@@ -20,14 +20,14 @@ class Article extends Component {
     console.log(this.state.article);
     return (
       <div className="displayInfoArea">
-        <h1 className="title">{this.state.article.title} </h1>
+        <h1 className="title">Article </h1>
         {this.state.article.created_by ? (
           <h2 className="articleAuthor">
             {this.state.article.created_by.name}
           </h2>
         ) : null}
         <div className="articleBody">{this.state.article.body}</div>
-        {/* <div className="articleDetails" /> */}
+        {/* <div className="articleDetails"> {} </div> */}
       </div>
     );
   }

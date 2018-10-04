@@ -19,7 +19,9 @@ class Topics extends Component {
         {this.state.topics.map(topic => {
           return (
             <div className="singleTopicDiv" key={topic._id}>
-              <Link to={`topics/${topic.slug}/articles`}> {topic.title}</Link>
+              <Link to={`topics/${topic.slug}/articles`} className="entryTitle">
+                {topic.title}
+              </Link>
             </div>
           );
         })}

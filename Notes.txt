@@ -9,9 +9,19 @@ as an user i want to be able to see the articles for a specific topic
 as an user i want to be able to see the comments for an article when i click on them
 
 as an user i want to be able to post a new article
-as an user i want to be able to post a new comments
+as an user i want to be able to post a new comment
 as an user i want to be able to up or downvote
 as an user i want to be able to like the comments
 as an user i want to be able to delete my comments
 
 as an user i want to be able to view my and other people profiles
+
+
+
+////////////////////////////
+
+
+fixed bar is in front of title
+grey not going till end of page
+need to create a link from the articles, the name in there, to the user. But the usernames arent in state there
+patch requests?

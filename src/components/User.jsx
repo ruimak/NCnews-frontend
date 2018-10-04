@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Router, Route, Link, Switch } from 'react-router-dom';
 import axios from 'axios';
+import defaultAvatar from '../defaultAvatar.png';
 
 class User extends Component {
   state = { user: {} };
@@ -12,13 +13,11 @@ class User extends Component {
         }`
       )
       .then(user => {
-        console.log(user);
         this.setState({ user: user.data.userInfo });
       })
       .catch(console.log);
   }
   render() {
-    console.log(this.props);
     return (
       <div className="displayInfoArea">
         <h1 className="title">{this.state.user.username} </h1>

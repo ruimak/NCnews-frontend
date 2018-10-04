@@ -20,12 +20,14 @@ class Users extends Component {
         {this.state.users.map(user => {
           return (
             <div key={user._id} className="singleUserDiv">
+              <Link to={`/users/${user.username}`} className="entryTitle">
+                {user.username}
+              </Link>
               <img
                 className="userThumbnail"
                 src={user.avatar_url}
                 alt={`${user.username} avatar`}
               />
-              <Link to={`/users/${user.username}`}>{user.username}</Link>
             </div>
           );
         })}

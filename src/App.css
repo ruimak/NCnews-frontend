@@ -1,14 +1,17 @@
 .App {
-  height: 100%;
-  display: grid;
-  grid-template-rows: 2fr 8fr;
 }
 
 .title {
   text-align: center;
+  border: 2px double black;
+  background-color: rgba(221, 221, 221, 0.767);
+  width: 45%;
+  margin: auto;
+  padding: 2%;
 }
 
 #mainDiv {
+  padding-top: 10%;
   height: 100%;
   background-color: rgba(221, 221, 221, 0.767);
 }
@@ -38,6 +41,8 @@
   position: fixed; /* Set the navbar to fixed position */
   top: 0; /* Position the navbar at the top of the page */
   width: 100%; /* Full width */
+  height: 10%;
+  z-index: 99;
 }
 
 #logo {
@@ -48,6 +53,20 @@
 .topButton {
   width: 50px;
   height: auto;
+}
+
+/* Personal div */
+
+.mainPagePersonalDiv {
+  width: 40px;
+  max-width: 50px;
+  height: 40px;
+}
+
+.mainPageThumbnail {
+  height: 30px;
+  max-width: 40px;
+  width: 30px;
 }
 
 /* Articles */
@@ -61,10 +80,36 @@
   transform: rotate(180deg);
 }
 
+.singleArticleDiv {
+  width: 90%;
+  margin-top: 5%;
+}
+
+.singleCommentDiv {
+  width: 90%;
+  margin-top: 5%;
+}
+
+.singleTopicDiv {
+  width: 90%;
+  margin-top: 5%;
+}
+
+.singleUserDiv {
+  width: 90%;
+  margin-top: 5%;
+}
+
+.entryTitle {
+  font-size: 130%;
+  padding-left: 5%;
+  border-left: solid red;
+}
+
 /* Users  */
 
 .singleUserDiv {
-  height: 5%;
+  height: 10%;
 }
 .userThumbnail {
   display: block;
