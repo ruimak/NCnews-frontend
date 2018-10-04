@@ -1,5 +1,7 @@
 .App {
   height: 100%;
+  display: grid;
+  grid-template-rows: 2fr 8fr;
 }
 
 .title {
@@ -30,8 +32,12 @@
   border-bottom: double;
   padding: 2%;
   display: grid;
+  background-color: white;
   grid-template-columns: 7fr 1fr 1fr 1fr;
   box-shadow: 5px 5px 5px black;
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0; /* Position the navbar at the top of the page */
+  width: 100%; /* Full width */
 }
 
 #logo {
@@ -42,4 +48,26 @@
 .topButton {
   width: 50px;
   height: auto;
+}
+
+/* Articles */
+
+.voteOrCommentImg {
+  width: 20px;
+  height: auto;
+}
+
+.flip {
+  transform: rotate(180deg);
+}
+
+/* Users  */
+
+.singleUserDiv {
+  height: 5%;
+}
+.userThumbnail {
+  display: block;
+  width: 10vp;
+  height: 80%;
 }

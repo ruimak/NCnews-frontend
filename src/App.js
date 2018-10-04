@@ -5,7 +5,8 @@ import topicsButton from './hashtag.png';
 import Articles from './components/Articles.jsx';
 import Article from './components/Article.jsx';
 import Topics from './components/Topics.jsx';
-import ArticlesByTopic from './components/ArticlesByTopic.jsx';
+import Users from './components/Users.jsx';
+import User from './components/User.jsx';
 
 class App extends Component {
   render() {
@@ -53,11 +54,13 @@ class App extends Component {
           <div id="displayDiv">
             <Route exact path="/articles" component={Articles} />
             <Route exact path="/topics" component={Topics} />
+            <Route exact path="/users" component={Users} />
             <Route
               exact
               path="/topics/:topic_slug/articles"
               component={Articles}
             />
+            <Route exact path="/users/:user_id" component={User} />
             <Route exact path="/articles/:article_id" component={Article} />
           </div>
         </div>

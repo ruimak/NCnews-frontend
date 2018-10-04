@@ -26,8 +26,8 @@ class Article extends Component {
             {this.state.article.created_by.name}
           </h2>
         ) : null}
-        <div classname="articleBody">{this.state.article.body}</div>
-        {/* <div classname="articleDetails" /> */}
+        <div className="articleBody">{this.state.article.body}</div>
+        {/* <div className="articleDetails" /> */}
       </div>
     );
   }
