@@ -30,17 +30,18 @@ class Vote extends Component {
   }
 
   updateVote = (id, direction) => {
-    console.log(this.props);
+    console.log(`https://northcoders-news-ruimak.herokuapp.com/api/articles/${id}
+          ?vote=${direction}`);
     console.log(id, direction);
     if (this.props.typeOfVote === 'article') {
-      return axios.patch(
-        `https://northcoders-news-ruimak.herokuapp.com/api/articles/${id}
-          ?vote=${direction}`
-      );
+      return axios
+        .patch(
+          `https://northcoders-news-ruimak.herokuapp.com/api/articles/${id}?vote=${direction}`
+        )
+        .catch(console.log);
     } else if (this.props.typeOfVote === 'comment') {
       return axios.patch(
-        `https://northcoders-news-ruimak.herokuapp.com/api/comments/${id}
-          ?vote=${direction}`
+        `https://northcoders-news-ruimak.herokuapp.com/api/comments/${id}?vote=${direction}`
       );
     }
     // .then(({ data }) => {

@@ -57,10 +57,14 @@ class App extends Component {
             />
           </Link>
         </div>
-        {/* <div className="mainPagePersonalDiv">
-          <img className='mainPageThumbnail' src={this.state.loggedInUser.avatar_url} alt="" />
+        <div className="mainPagePersonalDiv">
+          <img
+            className="mainPageThumbnail"
+            src={this.state.loggedInUser.avatar_url}
+            alt=""
+          />
           <span>{this.state.loggedInUser.name}</span>
-        </div> */}
+        </div>
         {/* This is the main div */}
         <div id="mainDiv">
           <div id="displayDiv">

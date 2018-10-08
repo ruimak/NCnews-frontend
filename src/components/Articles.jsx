@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Router, Route, Link, Switch } from 'react-router-dom';
 import axios from 'axios';
 import Vote from './Vote';
+import Post from './Post';
 
 class Articles extends Component {
   state = { articles: [] };
@@ -25,6 +26,7 @@ class Articles extends Component {
     return (
       <div className="displayInfoArea">
         <h1 className="title">Articles</h1>
+        <Post slug={this.props.match.params.topic_slug} typeOfPost="article" />
         {this.state.articles.map(article => {
           return (
             <div key={article._id} className="singleArticleDiv">

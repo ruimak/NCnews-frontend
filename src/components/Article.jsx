@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Router, Route, Link, Switch } from 'react-router-dom';
 import axios from 'axios';
+import Comments from './Comments.jsx';
+import Vote from './Vote.jsx';
 
 class Article extends Component {
   state = { article: {} };
@@ -17,9 +19,10 @@ class Article extends Component {
       .catch(console.log);
   }
   render() {
-    console.log(this.state.article);
+    console.log(this.props);
     return (
       <div className="displayInfoArea">
+        {console.log(this.state)}
         <h1 className="title">Article </h1>
         {this.state.article.created_by ? (
           <h2 className="articleAuthor">
@@ -27,7 +30,17 @@ class Article extends Component {
           </h2>
         ) : null}
         <div className="articleBody">{this.state.article.body}</div>
+        <div className="commentsAndVotes">
+          {this.state.article.votes && (
+            <Vote
+              votes={this.state.article.votes}
+              id={this.props.match.params.article_id}
+              typeOfVote="article"
+            />
+          )}
+        </div>
         {/* <div className="articleDetails"> {} </div> */}
+        <Comments articleId={this.props.match.params.article_id} />
       </div>
     );
   }
