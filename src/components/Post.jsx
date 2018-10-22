@@ -46,44 +46,26 @@ class PostMessage extends Component {
   }
   handleSubmit = event => {
     event.preventDefault();
+    console.log(this.props.id, 'id <--------');
     const id = this.props.id;
-    const slug = this.props.slug;
+    const slug =
+      this.props.slug === undefined ? this.state.slug : this.props.slug;
     const content = this.state.message;
     const title = this.state.title === '' ? 'Untitled' : this.state.title;
-
-    if (this.props.typeOfPost === 'article') {
-      return axios
-        .post(
-          `https://northcoders-news-ruimak.herokuapp.com/api/topics/${
-            slug ? slug : this.state.slug
-          }/articles`,
-          {
-            body: content,
-            title: title,
-            votes: 0,
-            created_by: '5b9bc4254c18302d443a6330'
-          }
-        )
-        .then(
+    console.log(this.props, 'props on handle submit');
+    this.props.typeOfPost === 'comment'
+      ? this.props.postNew(id, content).then(comment => {
+          this.setState({
+            message: ''
+          });
+        })
+      : this.props.postNew(id, title, slug, content).then(article => {
           this.setState({
             message: '',
             title: '',
             slug: ''
-          })
-        )
-        .catch(console.log);
-    } else if (this.props.typeOfPost === 'comment') {
-      return axios
-        .post(
-          `https://northcoders-news-ruimak.herokuapp.com/api/articles/${id}/comments`,
-          { body: content, created_by: '5b9bc4254c18302d443a6330' }
-        )
-        .then(comment => {
-          this.setState({
-            message: ''
           });
         });
-    }
   };
   handleChangeMessage = event => {
     this.setState({

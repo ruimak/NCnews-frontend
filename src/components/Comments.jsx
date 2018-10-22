@@ -40,7 +40,11 @@ class Comments extends Component {
         ) : (
           <h4>Comments</h4>
         )}
-        <Post id={this.props.articleId} typeOfPost="comment" />
+        <Post
+          id={this.props.articleId}
+          typeOfPost="comment"
+          postNew={this.postNewComment}
+        />
         {this.state.comments.map(comment => {
           return (
             <div key={comment._id} className="singleCommentDiv">
@@ -51,10 +55,6 @@ class Comments extends Component {
                     comment.created_at
                   ).fromNow()}`}
                 </span>
-                {console.log(
-                  comment.created_by.name,
-                  this.state.loggedInUser.name
-                )}
                 {comment.created_by.name === this.state.loggedInUser.name ? (
                   <Delete
                     commentId={comment._id}
@@ -79,12 +79,24 @@ class Comments extends Component {
         `https://northcoders-news-ruimak.herokuapp.com/api/comments/${id}`
       )
       .then(deletedComment => {
-        console.log('deleted comment?====>', deletedComment, '<===');
         this.setState({
           comments: this.state.comments.filter(comment => {
             return comment._id !== deletedComment.data.comment._id;
           })
         });
+      });
+  };
+
+  postNewComment = (id, content) => {
+    return axios
+      .post(
+        `https://northcoders-news-ruimak.herokuapp.com/api/articles/${id}/comments`,
+        { body: content, created_by: '5b9bc4254c18302d443a6330' }
+      )
+      .then(({ data }) => {
+        console.log(data, 'data <--------------');
+        console.log(this.state, 'stateeeeeeeeeee');
+        this.setState({ comments: [data.comment, ...this.state.comments] });
       });
   };
 }

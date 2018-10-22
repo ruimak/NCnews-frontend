@@ -22,7 +22,6 @@ class Article extends Component {
     console.log(this.props);
     return (
       <div className="displayInfoArea">
-        {console.log(this.state)}
         <h1 className="title">Article </h1>
         {this.state.article.created_by ? (
           <h2 className="articleAuthor">
@@ -39,7 +38,6 @@ class Article extends Component {
             />
           )}
         </div>
-        {/* <div className="articleDetails"> {} </div> */}
         <Comments articleId={this.props.match.params.article_id} />
       </div>
     );

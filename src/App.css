@@ -1,4 +1,5 @@
 .App {
+  display: grid;
 }
 
 .title {
@@ -115,4 +116,8 @@
   display: block;
   width: 10vp;
   height: 80%;
+}
+
+.postBlock {
+  padding: 3%;
 }

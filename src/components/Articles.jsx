@@ -26,7 +26,12 @@ class Articles extends Component {
     return (
       <div className="displayInfoArea">
         <h1 className="title">Articles</h1>
-        <Post slug={this.props.match.params.topic_slug} typeOfPost="article" />
+        {console.log(this.props.match.params.topic_slug, 'sluuuuug')}
+        <Post
+          slug={this.props.match.params.topic_slug}
+          typeOfPost="article"
+          postNew={this.postNewArticle}
+        />
         {this.state.articles.map(article => {
           return (
             <div key={article._id} className="singleArticleDiv">
@@ -61,6 +66,23 @@ class Articles extends Component {
       </div>
     );
   }
+  postNewArticle = (id, title, slug, content) => {
+    return axios
+      .post(
+        `https://northcoders-news-ruimak.herokuapp.com/api/topics/${slug}/articles`,
+        {
+          body: content,
+          created_by: '5b9bc4254c18302d443a6330',
+          title: title,
+          votes: 0
+        }
+      )
+      .then(({ data }) => {
+        console.log(data, 'data <--------------');
+        console.log(this.state, 'stateeeeeeeeeee');
+        this.setState({ articles: [data.article, ...this.state.articles] });
+      });
+  };
 }
 
 export default Articles;
