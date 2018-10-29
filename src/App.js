@@ -8,15 +8,10 @@ import Topics from './components/Topics.jsx';
 import Users from './components/Users.jsx';
 import User from './components/User.jsx';
 import Comments from './components/Comments.jsx';
+import Error from './components/Error.jsx';
 
 class App extends Component {
-  state = {
-    loggedInUser: {
-      name: 'Rui Mak',
-      avatar_url: 'https://i.redd.it/jshtqi4t04x01.jpg',
-      username: 'number1'
-    }
-  };
+  state = {};
   render() {
     return (
       <div className="App">
@@ -57,17 +52,13 @@ class App extends Component {
             />
           </Link>
         </div>
-        <div className="mainPagePersonalDiv">
-          <img
-            className="mainPageThumbnail"
-            src={this.state.loggedInUser.avatar_url}
-            alt=""
-          />
-          <span>{this.state.loggedInUser.name}</span>
-        </div>
+
         {/* This is the main div */}
         <div id="mainDiv">
           <div id="displayDiv">
+            <Route exact path="/error" component={Error} />
+            <Route exact path="/" component={Articles} />
+
             <Route exact path="/articles" component={Articles} />
             <Route exact path="/topics" component={Topics} />
             <Route exact path="/users" component={Users} />
@@ -83,6 +74,7 @@ class App extends Component {
               path="/articles/:article_id/comments"
               component={Comments}
             />
+            <Route exact path="/*" component={Error} />
           </div>
         </div>
       </div>

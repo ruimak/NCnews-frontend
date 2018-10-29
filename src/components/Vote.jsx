@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Router, Route, Link, Switch } from 'react-router-dom';
-import axios from 'axios';
+import { voteFunction } from '../api.js';
 
 class Vote extends Component {
   state = { voteModifier: 0 };
@@ -30,24 +29,7 @@ class Vote extends Component {
   }
 
   updateVote = (id, direction) => {
-    console.log(`https://northcoders-news-ruimak.herokuapp.com/api/articles/${id}
-          ?vote=${direction}`);
-    console.log(id, direction);
-    if (this.props.typeOfVote === 'article') {
-      return axios
-        .patch(
-          `https://northcoders-news-ruimak.herokuapp.com/api/articles/${id}?vote=${direction}`
-        )
-        .catch(console.log);
-    } else if (this.props.typeOfVote === 'comment') {
-      return axios.patch(
-        `https://northcoders-news-ruimak.herokuapp.com/api/comments/${id}?vote=${direction}`
-      );
-    }
-    // .then(({ data }) => {
-    // return data.article;
-    // })
-    // .catch(console.log);
+    return voteFunction(`${this.props.typeOfVote}s`, id, direction);
   };
   changeVoteMod = direction => {
     const newVoteMod = direction === 'up' ? 1 : -1;

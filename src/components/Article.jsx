@@ -1,25 +1,29 @@
 import React, { Component } from 'react';
-import { Router, Route, Link, Switch } from 'react-router-dom';
-import axios from 'axios';
 import Comments from './Comments.jsx';
 import Vote from './Vote.jsx';
+import { getSingleArticle } from '../api.js';
+
+import { navigate } from '@reach/router';
 
 class Article extends Component {
   state = { article: {} };
   componentDidMount() {
-    axios
-      .get(
-        `https://northcoders-news-ruimak.herokuapp.com/api${
-          this.props.location.pathname
-        }`
-      )
+    getSingleArticle(this.props.location.pathname)
       .then(article => {
         this.setState({ article: article.data.article });
       })
-      .catch(console.log);
+      .catch(err => {
+        navigate('/error', {
+          replace: true,
+          state: {
+            code: err.code,
+            message: err.message,
+            from: '/article'
+          }
+        });
+      });
   }
   render() {
-    console.log(this.props);
     return (
       <div className="displayInfoArea">
         <h1 className="title">Article </h1>

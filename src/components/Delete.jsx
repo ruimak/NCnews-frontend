@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 
 class Delete extends Component {
   state = { activeUser: '5b9bc4254c18302d443a6330' };

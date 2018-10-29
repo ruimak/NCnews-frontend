@@ -1,17 +1,10 @@
 import React, { Component } from 'react';
-import { Router, Route, Link, Switch } from 'react-router-dom';
-import axios from 'axios';
-import defaultAvatar from '../defaultAvatar.png';
+import { getSingleUser } from '../api.js';
 
 class User extends Component {
   state = { user: {} };
   componentDidMount() {
-    axios
-      .get(
-        `https://northcoders-news-ruimak.herokuapp.com/api${
-          this.props.location.pathname
-        }`
-      )
+    return getSingleUser(this.props.location.pathname)
       .then(user => {
         this.setState({ user: user.data.userInfo });
       })

@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
-import { Router, Route, Link, Switch } from 'react-router-dom';
-import axios from 'axios';
-import defaultAvatar from '../defaultAvatar.png';
+import { Link } from 'react-router-dom';
+import { getAllUsers } from '../api.js';
 
 class Users extends Component {
   state = { users: [] };
   componentDidMount() {
-    axios
-      .get('https://northcoders-news-ruimak.herokuapp.com/api/users')
-      .then(users => {
-        this.setState({ users: users.data.users });
-        console.log(users);
-      });
+    return getAllUsers().then(users => {
+      this.setState({ users: users.data.users });
+    });
   }
   render() {
     return (
@@ -21,13 +17,13 @@ class Users extends Component {
           return (
             <div key={user._id} className="singleUserDiv">
               <Link to={`/users/${user.username}`} className="entryTitle">
+                <img
+                  className="userThumbnail"
+                  src={user.avatar_url}
+                  alt={`${user.username} avatar`}
+                />
                 {user.username}
               </Link>
-              <img
-                className="userThumbnail"
-                src={user.avatar_url}
-                alt={`${user.username} avatar`}
-              />
             </div>
           );
         })}

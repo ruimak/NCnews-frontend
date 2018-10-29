@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { navigate } from '@reach/router';
 
 class PostMessage extends Component {
   state = {
     title: '',
     message: '',
-    slug: ''
+    slug: '',
+    loggedInUser: {
+      name: 'Amy Happy',
+      username: 'happyamy2016',
+      id: '5b9bc4254c18302d443a6330'
+    }
   };
   render() {
     return (
       <form className="postBlock" onSubmit={this.handleSubmit}>
-        <button>{`Post a new ${this.props.typeOfPost}`}</button>
         {this.props.typeOfPost === 'article' && (
           <div>
             Title:
@@ -24,7 +28,7 @@ class PostMessage extends Component {
         {this.props.slug === undefined &&
           this.props.typeOfPost === 'article' && (
             <div>
-              Slug:
+              Topic:
               <input
                 onChange={this.handleChangeSlug}
                 type="text"
@@ -41,31 +45,55 @@ class PostMessage extends Component {
             value={this.state.message}
           />
         </div>
+        <button>{`Post a new ${this.props.typeOfPost}`}</button>
       </form>
     );
   }
   handleSubmit = event => {
     event.preventDefault();
-    console.log(this.props.id, 'id <--------');
     const id = this.props.id;
     const slug =
       this.props.slug === undefined ? this.state.slug : this.props.slug;
     const content = this.state.message;
     const title = this.state.title === '' ? 'Untitled' : this.state.title;
-    console.log(this.props, 'props on handle submit');
+
     this.props.typeOfPost === 'comment'
-      ? this.props.postNew(id, content).then(comment => {
-          this.setState({
-            message: ''
+      ? this.props
+          .postNew(id, content, this.state.loggedInUser.id)
+          .catch(err => {
+            navigate('/error', {
+              replace: true,
+              state: {
+                code: err.code,
+                message: err.message,
+                from: '/article'
+              }
+            });
+          })
+          .then(comment => {
+            this.setState({
+              message: ''
+            });
+          })
+      : this.props
+          .postNew(id, title, slug, content)
+          .catch(err => {
+            navigate('/error', {
+              replace: true,
+              state: {
+                code: err.code,
+                message: err.message,
+                from: '/article'
+              }
+            });
+          })
+          .then(article => {
+            this.setState({
+              message: '',
+              title: '',
+              slug: ''
+            });
           });
-        })
-      : this.props.postNew(id, title, slug, content).then(article => {
-          this.setState({
-            message: '',
-            title: '',
-            slug: ''
-          });
-        });
   };
   handleChangeMessage = event => {
     this.setState({

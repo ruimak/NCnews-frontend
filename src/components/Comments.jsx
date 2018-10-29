@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { Router, Route, Link, Switch } from 'react-router-dom';
-import axios from 'axios';
 import moment from 'moment';
 import Vote from './Vote';
 import Post from './Post';
 import Delete from './Delete';
+import { getCommentsForArticle, deleteComments, postComment } from '../api.js';
 
 class Comments extends Component {
   state = {
@@ -16,23 +15,17 @@ class Comments extends Component {
     }
   };
   componentDidMount() {
-    axios
-      .get(
-        this.props.location
-          ? `https://northcoders-news-ruimak.herokuapp.com/api${
-              this.props.location.pathname
-            }`
-          : `https://northcoders-news-ruimak.herokuapp.com/api/articles/${
-              this.props.articleId
-            }/comments`
-      )
+    console.log(this.props.location, 'location');
+    (this.props.location
+      ? getCommentsForArticle(this.props.location.pathname)
+      : getCommentsForArticle(`/articles/${this.props.articleId}/comments`)
+    )
       .then(comments => {
         this.setState({ comments: comments.data.comments });
       })
       .catch(console.log);
   }
   render() {
-    console.log('re-rendering the comments...');
     return (
       <div className="displayInfoArea">
         {this.props.location ? (
@@ -51,9 +44,11 @@ class Comments extends Component {
               <span className="commentBody">{comment.body}</span>
               <div className="commentDetails">
                 <span>
-                  {`By: ${comment.created_by.name} at ${moment(
-                    comment.created_at
-                  ).fromNow()}`}
+                  {`By: ${
+                    comment.created_by && comment.created_by.name
+                      ? comment.created_by.name
+                      : 'Amy Happy'
+                  } at ${moment(comment.created_at).fromNow()}`}
                 </span>
                 {comment.created_by.name === this.state.loggedInUser.name ? (
                   <Delete
@@ -74,30 +69,21 @@ class Comments extends Component {
     );
   }
   deleteFunction = id => {
-    return axios
-      .delete(
-        `https://northcoders-news-ruimak.herokuapp.com/api/comments/${id}`
-      )
-      .then(deletedComment => {
-        this.setState({
-          comments: this.state.comments.filter(comment => {
-            return comment._id !== deletedComment.data.comment._id;
-          })
-        });
+    return deleteComments(id).then(deletedComment => {
+      this.setState({
+        comments: this.state.comments.filter(comment => {
+          return comment._id !== deletedComment.data.comment._id;
+        })
       });
+    });
   };
 
   postNewComment = (id, content) => {
-    return axios
-      .post(
-        `https://northcoders-news-ruimak.herokuapp.com/api/articles/${id}/comments`,
-        { body: content, created_by: '5b9bc4254c18302d443a6330' }
-      )
-      .then(({ data }) => {
-        console.log(data, 'data <--------------');
-        console.log(this.state, 'stateeeeeeeeeee');
+    return postComment(id, content, this.state.loggedInUser.id).then(
+      ({ data }) => {
         this.setState({ comments: [data.comment, ...this.state.comments] });
-      });
+      }
+    );
   };
 }
 

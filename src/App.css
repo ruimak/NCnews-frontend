@@ -1,123 +1,124 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
 .App {
   display: grid;
+  grid-template-rows: 25%, 75%;
 }
 
-.title {
-  text-align: center;
-  border: 2px double black;
-  background-color: rgba(221, 221, 221, 0.767);
-  width: 45%;
-  margin: auto;
-  padding: 2%;
-}
-
-#mainDiv {
-  padding-top: 10%;
-  height: 100%;
-  background-color: rgba(221, 221, 221, 0.767);
-}
-#displayDiv {
-  height: 100%;
-  width: 80%;
-  background-color: white;
-  margin: auto;
-  box-shadow: 5px 5px 5px grey;
-}
-
-.displayInfoArea {
-  padding: 10%;
-  padding-top: 5%;
-  height: 100%;
-}
-
-/* Top bar with logo and buttons */
-
+/* Top Bar */
 #topBar {
-  border-bottom: double;
-  padding: 2%;
   display: grid;
-  background-color: white;
   grid-template-columns: 7fr 1fr 1fr 1fr;
-  box-shadow: 5px 5px 5px black;
-  position: fixed; /* Set the navbar to fixed position */
-  top: 0; /* Position the navbar at the top of the page */
-  width: 100%; /* Full width */
-  height: 10%;
-  z-index: 99;
+  border-bottom: 1vh;
+  border-bottom-color: black;
+  border-bottom-style: ridge;
 }
 
 #logo {
-  width: 250px;
-  height: auto;
+  height: 10vh;
 }
 
 .topButton {
-  width: 50px;
-  height: auto;
+  height: 8vh;
+  position: absolute;
+  top: 1%;
 }
 
-/* Personal div */
+/* Main Div */
 
-.mainPagePersonalDiv {
-  width: 40px;
-  max-width: 50px;
-  height: 40px;
+#mainDiv {
+  background-color: rgb(219, 219, 219);
 }
 
-.mainPageThumbnail {
-  height: 30px;
-  max-width: 40px;
-  width: 30px;
+#displayDiv {
+  background-color: white;
+  width: 80%;
+  margin: 0 auto;
 }
 
-/* Articles */
+/* Every Component */
 
-.voteOrCommentImg {
-  width: 20px;
-  height: auto;
+.title {
+  width: 50%;
+  margin: 0 auto;
+  color: white;
+  font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter,
+    monospace;
+  background-color: rgb(123, 167, 197);
+  border-bottom: 0.1vh;
+  border-bottom-color: black;
+  border-bottom-style: solid;
+  border-left: 0.1vh;
+  border-left-color: black;
+  border-left-style: solid;
+  border-right: 0.1vh;
+  border-right-color: black;
+  border-right-style: solid;
+  text-align: center;
 }
 
-.flip {
-  transform: rotate(180deg);
+/* Post Block */
+
+.postBlock {
+  padding: 2vh;
+  padding-top: 7vh;
+  padding-left: 4vh;
+  text-align: center;
 }
+
+/* Article User and Topic Div */
 
 .singleArticleDiv {
-  width: 90%;
-  margin-top: 5%;
-}
-
-.singleCommentDiv {
-  width: 90%;
-  margin-top: 5%;
+  width: 70%;
+  margin: 0 auto;
+  padding: 5vh;
+  border: 0.1vh;
+  border-color: black;
+  border-style: solid;
+  margin-bottom: 2vh;
+  text-align: center;
 }
 
 .singleTopicDiv {
-  width: 90%;
-  margin-top: 5%;
+  width: 70%;
+  margin: 0 auto;
+  padding: 5vh;
+  border: 0.1vh;
+  border-color: black;
+  border-style: solid;
+  margin-bottom: 2vh;
 }
 
 .singleUserDiv {
-  width: 90%;
-  margin-top: 5%;
+  width: 70%;
+  margin: 0 auto;
+  padding: 5vh;
+  border: 0.1vh;
+  border-color: black;
+  border-style: solid;
+  margin-bottom: 2vh;
 }
 
 .entryTitle {
-  font-size: 130%;
-  padding-left: 5%;
-  border-left: solid red;
+  font-size: 5vh;
 }
 
-/* Users  */
-
-.singleUserDiv {
-  height: 10%;
+.topicThumbnail {
+  height: 15vh;
+  width: 15vh;
+  margin: 0 auto;
 }
+
 .userThumbnail {
-  display: block;
-  width: 10vp;
-  height: 80%;
+  height: 15vh;
+  width: 15vh;
 }
 
-.postBlock {
-  padding: 3%;
+/* Votes and Comments */
+.voteOrCommentImg {
+  height: 5vh;
+  width: 5vh;
 }

@@ -1,0 +1,5 @@
+when you post an article and immediatly press the comment symbol, its not working properly
+
+proptypes?
+
+url changes to error but doesnt render it
