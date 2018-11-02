@@ -6,3 +6,11 @@ The backend for this project can be found on the following link:
 https://github.com/ruimak/BE2-northcoders-news
 
 As soon as possible I'll be fixing minor bugs, such as a vote simbol not displaying on articles with no votes, and not being able to see the comments for an article as soon as you create it.
+
+To run this app, please run the command:
+
+npm install
+
+followed by:
+
+npm start
