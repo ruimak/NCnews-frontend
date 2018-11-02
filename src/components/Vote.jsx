@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { voteFunction } from '../api.js';
+import PropTypes from 'prop-types';
 
 class Vote extends Component {
   state = { voteModifier: 0 };
@@ -37,5 +38,10 @@ class Vote extends Component {
     this.updateVote(this.props.id, direction);
   };
 }
+
+Vote.proptypes = {
+  id: PropTypes.string,
+  typeOfVote: PropTypes.string
+};
 
 export default Vote;

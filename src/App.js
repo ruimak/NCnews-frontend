@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Route, Link, Switch } from 'react-router-dom';
 import './App.css';
 import topicsButton from './hashtag.png';
 import Articles from './components/Articles.jsx';
@@ -8,7 +8,7 @@ import Topics from './components/Topics.jsx';
 import Users from './components/Users.jsx';
 import User from './components/User.jsx';
 import Comments from './components/Comments.jsx';
-import Error from './components/Error.jsx';
+import NotFound from './components/NotFound.jsx';
 
 class App extends Component {
   state = {};
@@ -35,7 +35,6 @@ class App extends Component {
             />
           </Link>
           <Link to="/topics">
-            {' '}
             <img
               className="topButton"
               title="Topics"
@@ -56,25 +55,26 @@ class App extends Component {
         {/* This is the main div */}
         <div id="mainDiv">
           <div id="displayDiv">
-            <Route exact path="/error" component={Error} />
-            <Route exact path="/" component={Articles} />
-
-            <Route exact path="/articles" component={Articles} />
-            <Route exact path="/topics" component={Topics} />
-            <Route exact path="/users" component={Users} />
-            <Route
-              exact
-              path="/topics/:topic_slug/articles"
-              component={Articles}
-            />
-            <Route exact path="/users/:user_id" component={User} />
-            <Route exact path="/articles/:article_id" component={Article} />
-            <Route
-              exact
-              path="/articles/:article_id/comments"
-              component={Comments}
-            />
-            <Route exact path="/*" component={Error} />
+            <Switch>
+              <Route exact path="/NotFound" component={NotFound} />
+              <Route exact path="/" component={Articles} />
+              <Route exact path="/articles" component={Articles} />
+              <Route exact path="/topics" component={Topics} />
+              <Route exact path="/users" component={Users} />
+              <Route
+                exact
+                path="/topics/:topic_slug/articles"
+                component={Articles}
+              />
+              <Route exact path="/users/:user_id" component={User} />
+              <Route exact path="/articles/:article_id" component={Article} />
+              <Route
+                exact
+                path="/articles/:article_id/comments"
+                component={Comments}
+              />
+              <Route exact path="/*" component={NotFound} />
+            </Switch>
           </div>
         </div>
       </div>

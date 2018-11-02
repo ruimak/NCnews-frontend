@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Delete extends Component {
   state = { activeUser: '5b9bc4254c18302d443a6330' };
@@ -14,5 +15,9 @@ class Delete extends Component {
     );
   }
 }
+
+Delete.proptypes = {
+  deleteFunction: PropTypes.func
+};
 
 export default Delete;

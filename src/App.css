@@ -60,6 +60,26 @@
   text-align: center;
 }
 
+.titleWithMarginBottom {
+  width: 50%;
+  margin: 0 auto;
+  color: white;
+  font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter,
+    monospace;
+  background-color: rgb(123, 167, 197);
+  border-bottom: 0.1vh;
+  border-bottom-color: black;
+  border-bottom-style: solid;
+  border-left: 0.1vh;
+  border-left-color: black;
+  border-left-style: solid;
+  border-right: 0.1vh;
+  border-right-color: black;
+  border-right-style: solid;
+  text-align: center;
+  margin-bottom: 5%;
+}
+
 /* Post Block */
 
 .postBlock {
@@ -78,6 +98,17 @@
   border: 0.1vh;
   border-color: black;
   border-style: solid;
+  margin-bottom: 2vh;
+  text-align: center;
+}
+
+.articleTitleAndBody {
+  width: 70%;
+  margin: 0 auto;
+  padding: 5vh;
+  border: 0.1vh;
+  border-color: black;
+  border-style: dotted;
   margin-bottom: 2vh;
   text-align: center;
 }
@@ -117,8 +148,83 @@
   width: 15vh;
 }
 
+.userAvatar {
+  display: block;
+  text-align: center;
+  margin: auto;
+  height: 50%;
+  width: 50%;
+  padding-top: 1%;
+}
+
+.userDescription {
+  display: block;
+  text-align: center;
+  margin: auto;
+  height: 70%;
+  width: 70%;
+  padding-top: 1%;
+}
+
 /* Votes and Comments */
 .voteOrCommentImg {
   height: 5vh;
   width: 5vh;
+  cursor: pointer;
+}
+
+.commentArea {
+  width: 70%;
+  margin: 0 auto;
+  padding: 5vh;
+
+  margin-bottom: 2vh;
+  text-align: center;
+}
+
+/* Sorting Divs */
+
+.allSortsDiv {
+  text-align: center;
+  margin: 0px auto;
+  width: 40%;
+  font-size: 80%;
+  padding-bottom: 4%;
+}
+
+.singleSortDiv {
+  margin: auto;
+}
+
+.inline {
+  display: inline;
+  text-align: middle;
+  margin: auto;
+}
+
+.inlineButton {
+  display: inline;
+  text-align: middle;
+  margin: auto;
+  cursor: pointer;
+}
+
+/* Error Message */
+
+.errorPicture {
+  display: block;
+  text-align: center;
+  margin: auto;
+  height: 70%;
+  width: 70%;
+  padding-top: 10%;
+}
+
+.errorText {
+  display: block;
+  text-align: center;
+  margin: auto;
+  height: 70%;
+  width: 70%;
+  padding-top: 1%;
 }

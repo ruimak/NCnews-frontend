@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { getAllUsers } from '../api.js';
 
 class Users extends Component {
-  state = { users: [] };
+  state = { users: [], errStatus: null };
   componentDidMount() {
     return getAllUsers().then(users => {
       this.setState({ users: users.data.users });
@@ -12,7 +12,7 @@ class Users extends Component {
   render() {
     return (
       <div className="displayInfoArea">
-        <h1 className="title">Users</h1>
+        <h1 className="titleWithMarginBottom">Users</h1>
         {this.state.users.map(user => {
           return (
             <div key={user._id} className="singleUserDiv">

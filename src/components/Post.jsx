@@ -1,18 +1,40 @@
 import React, { Component } from 'react';
-import { navigate } from '@reach/router';
+import { Redirect } from 'react-router';
+import { getAllUsers } from '../api.js';
+import PropTypes from 'prop-types';
 
 class PostMessage extends Component {
   state = {
     title: '',
     message: '',
     slug: '',
-    loggedInUser: {
-      name: 'Amy Happy',
-      username: 'happyamy2016',
-      id: '5b9bc4254c18302d443a6330'
-    }
+    loggedInUser: null,
+    errStatus: null
   };
+  componentDidMount() {
+    return getAllUsers()
+      .then(users => {
+        return users.data.users.filter(user => {
+          return user.username === 'happyamy2016';
+        });
+      })
+      .then(amyUser => {
+        this.setState({ loggedInUser: amyUser[0] });
+      });
+  }
   render() {
+    const { errStatus } = this.state;
+    if (errStatus)
+      return (
+        <Redirect
+          to={{
+            pathname: '/NotFound',
+            state: {
+              message: 'There is no such topic. '
+            }
+          }}
+        />
+      );
     return (
       <form className="postBlock" onSubmit={this.handleSubmit}>
         {this.props.typeOfPost === 'article' && (
@@ -59,40 +81,28 @@ class PostMessage extends Component {
 
     this.props.typeOfPost === 'comment'
       ? this.props
-          .postNew(id, content, this.state.loggedInUser.id)
-          .catch(err => {
-            navigate('/error', {
-              replace: true,
-              state: {
-                code: err.code,
-                message: err.message,
-                from: '/article'
-              }
-            });
-          })
+          .postNew(id, content, this.state.loggedInUser._id)
+
           .then(comment => {
             this.setState({
               message: ''
             });
           })
+          .catch(err => {
+            this.setState({ errStatus: err });
+          })
       : this.props
           .postNew(id, title, slug, content)
-          .catch(err => {
-            navigate('/error', {
-              replace: true,
-              state: {
-                code: err.code,
-                message: err.message,
-                from: '/article'
-              }
-            });
-          })
+
           .then(article => {
             this.setState({
               message: '',
               title: '',
               slug: ''
             });
+          })
+          .catch(err => {
+            this.setState({ errStatus: err });
           });
   };
   handleChangeMessage = event => {
@@ -111,5 +121,12 @@ class PostMessage extends Component {
     });
   };
 }
+
+PostMessage.proptypes = {
+  typeOfPost: PropTypes.string,
+  slug: PropTypes.string,
+  postNew: PropTypes.func,
+  id: PropTypes.string
+};
 
 export default PostMessage;
